@@ -5,7 +5,7 @@
 class ResourceManager
 {
     ResourceManager{};
-    ~ResourceManager{};
+    ~ResourceManager{delete Res};
     ResourceManager(const ResourceManager& R){};
     ResourceManager& operator=(const ResourceManager& t){};
   
