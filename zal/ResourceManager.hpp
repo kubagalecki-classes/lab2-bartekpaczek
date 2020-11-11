@@ -4,7 +4,7 @@
 
 class ResourceManager{
     Resource *Res;
-
+    public:
     ResourceManager(){
         Res = new Resource;
     };
@@ -31,7 +31,7 @@ class ResourceManager{
               };
     };
     
-    public:
+
         double get(){
             return Res->get();
         };
