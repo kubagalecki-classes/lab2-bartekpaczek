@@ -5,7 +5,8 @@
 class ResourceManager
 {
     Resource *Res;
-
+    
+    public:
     ResourceManager(){
         Res = nullptr;
     };
@@ -17,7 +18,7 @@ class ResourceManager
     ResourceManager& operator=(const ResourceManager& t){return *this;};
     ResourceManager& operator=(ResourceManager&&){return *this;};
     
-    public:
+
         double get(){
             return Res->get();
         };
