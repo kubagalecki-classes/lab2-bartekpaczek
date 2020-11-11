@@ -2,23 +2,36 @@
 
 #include "Resource.hpp"
 
-class ResourceManager
-{
+class ResourceManager{
     Resource *Res;
-    
-    public:
+
     ResourceManager(){
-        Res = nullptr;
+        Res = new Resource;
     };
     ~ResourceManager()
     {
         delete Res;
     };
-    ResourceManager(const ResourceManager& R){};
-    ResourceManager& operator=(const ResourceManager& t){return *this;};
-    ResourceManager& operator=(ResourceManager&&){return *this;};
+    ResourceManager(const ResourceManager& a){
+        Res = new Resource;
+        *Res = *a.Res;
+    };
+    ResourceManager& operator=(const ResourceManager& b){
+        *Res = *b.Res;
+        return *this;
+        };
+    ResourceManager& operator=(ResourceManager&& c){
+        if (this != &c){
+            delete Res; 
+            Res = c.Res;
+            c.Res = nullptr;
+            return *this;}
+          else{
+              return *this;
+              };
+    };
     
-
+    public:
         double get(){
             return Res->get();
         };
