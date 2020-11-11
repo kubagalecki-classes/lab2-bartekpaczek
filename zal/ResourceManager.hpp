@@ -7,7 +7,7 @@ class ResourceManager
     ResourceManager{};
     ~ResourceManager{delete Res};
     ResourceManager(const ResourceManager& R){};
-    ResourceManager& operator=(const ResourceManager& t){};
+    ResourceManager& operator=(const ResourceManager& t){return *this;};
   
     double get(
       return *Res.get()
