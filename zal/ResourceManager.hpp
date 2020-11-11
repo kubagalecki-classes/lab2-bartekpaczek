@@ -4,6 +4,7 @@
 
 class ResourceManager{
     Resource *Res;
+    
     public:
     ResourceManager(){
         Res = new Resource;
@@ -17,7 +18,8 @@ class ResourceManager{
         *Res = *a.Res;
     };
     ResourceManager& operator=(const ResourceManager& b){
-        *Res = *b.Res;
+        if(this !=&b)
+            *Res = *b.Res;
         return *this;
         };
     ResourceManager& operator=(ResourceManager&& c){
@@ -30,7 +32,6 @@ class ResourceManager{
               return *this;
               };
     };
-    
 
         double get(){
             return Res->get();
