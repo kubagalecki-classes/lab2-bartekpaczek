@@ -4,17 +4,22 @@
 
 class ResourceManager
 {
-    ResourceManager{};
-    ~ResourceManager{delete Res};
+    ResourceManager(){
+        Res = nullptr;
+    };
+    ~ResourceManager()
+    {
+        delete Res;
+    };
     ResourceManager(const ResourceManager& R){};
     ResourceManager& operator=(const ResourceManager& t){return *this;};
   
-    double get(
-      return *Res.get()
-    )
+    double get(){
+      return Res.get();
+    };
 
 
-    private
-    Resource *Res
+    private:
+        Resource *Res;
 };
  
