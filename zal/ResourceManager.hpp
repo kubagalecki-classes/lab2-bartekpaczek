@@ -13,10 +13,14 @@ class ResourceManager{
     {
         delete Res;
     };
-    ResourceManager(const ResourceManager& a){
+    ResourceManager(const ResourceManager& d){
         Res = new Resource;
-        *Res = *a.Res;
+        *Res = *d.Res;
     };
+    ResourceManager(ResourceManager && a){
+       Res = a.Res;
+       a.Res = nullptr; 
+    }
     ResourceManager& operator=(const ResourceManager& b){
         if(this !=&b)
             *Res = *b.Res;
@@ -28,9 +32,9 @@ class ResourceManager{
             Res = c.Res;
             c.Res = nullptr;
             return *this;}
-          else{
+        else{
               return *this;
-              };
+        };
     };
 
         double get(){
