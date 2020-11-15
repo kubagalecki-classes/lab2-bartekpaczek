@@ -1,12 +1,17 @@
 #include <iostream>
 class Wektor
 {
+private:
+    int dlugosc;
+    int  pojemnosc; 
+
 public:
+    double* value;   
+
     Wektor(int n) : dlugosc{n}
     {
         pojemnosc = n;
         value     = new double[n];
-        setAll(0);
     };
     ~Wektor(){
         delete[] value;
@@ -17,13 +22,10 @@ public:
         pojemnosc = t.pojemnosc;
         value = t.value;
     }
-    
-    //
 
-    int  pojemnosc;
     void setAll(double value_all)
     {
-        for (int i = 0; i < this->dlugosc; ++i) {
+        for (int i = 0; i < dlugosc; ++i) {
             value[i] = value_all;
         }
     };
@@ -34,27 +36,24 @@ public:
 
     void print()
     {
-        for (int i = 0; i < this->dlugosc; i++) {
+        for (int i = 0; i < dlugosc; i++) {
             std::cout << value[i] << "\n";
         }
     };
     void zmienDlugosc(int n)
     {
         if (n <= pojemnosc) {
-            for (int i = n; i < this->pojemnosc; ++i) {
+            for (int i = n; i < pojemnosc; ++i) {
                 value[i] = 0;
             }
         }
         else {
             double* temp = new double[n];
-            *temp = {0.};
-            for (int i = 0; i < this->dlugosc; ++i) {
+            for (int i = 0; i < dlugosc; ++i) {
                 temp[i] = value[i];
             };
             delete[] value;
-            value = new double[n];
             value = temp;
-            delete[] temp;
             pojemnosc = n;
         };
         dlugosc = n;
@@ -67,15 +66,15 @@ public:
         };
         return value[ref];
     };
-    double* value;
-private:
-    int dlugosc;
-    
+
 };
+
 
 int main()
 {
     Wektor dupa(6);
+//    dupa.print();
+//    std::cout << "nowy\n";
     dupa.setAll(2.);
     dupa.print();
     dupa.zmienDlugosc(10);
@@ -90,4 +89,10 @@ int main()
     double& b = dupa[8];
     b=12;
     dupa.print();
+
+    int g = 6;
+    int& h = g;
+    h= 9;
+    std::cout<<g;
+
 }
