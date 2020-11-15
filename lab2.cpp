@@ -2,19 +2,28 @@
 class Wektor
 {
 public:
-    Wektor(int n)
+    Wektor(int n) : dlugosc{n}
     {
-        pojemnosc = 5;
-        dlugosc   = n;
+        pojemnosc = n;
         value     = new double[n];
-        *value    = {0.};
+        setAll(0);
     };
+    ~Wektor(){
+        delete[] value;
+    };
+    // konstruktor kopiujacy
+    Wektor(const Wektor& t){
+        dlugosc = t.dlugosc;
+        pojemnosc = t.pojemnosc;
+        value = t.value;
+    }
     
+    //
 
     int  pojemnosc;
     void setAll(double value_all)
     {
-        for (int i = 0; i < this->dlugosc; i++) {
+        for (int i = 0; i < this->dlugosc; ++i) {
             value[i] = value_all;
         }
     };
@@ -32,21 +41,21 @@ public:
     void zmienDlugosc(int n)
     {
         if (n <= pojemnosc) {
-            for (int i = n; i < this->pojemnosc; i++) {
+            for (int i = n; i < this->pojemnosc; ++i) {
                 value[i] = 0;
             }
         }
         else {
-            double* temp;
-            temp  = new double[n];
+            double* temp = new double[n];
             *temp = {0.};
-            for (int i = 0; i < this->dlugosc; i++) {
+            for (int i = 0; i < this->dlugosc; ++i) {
                 temp[i] = value[i];
             };
             delete[] value;
             value = new double[n];
             value = temp;
             delete[] temp;
+            pojemnosc = n;
         };
         dlugosc = n;
     };
@@ -58,10 +67,10 @@ public:
         };
         return value[ref];
     };
-
+    double* value;
 private:
     int dlugosc;
-    double* value;
+    
 };
 
 int main()
